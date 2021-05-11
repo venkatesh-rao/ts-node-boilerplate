@@ -1,10 +1,14 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
+import mongoDB from './database';
+
 // Read environment variables from .env file
 const ENV_FILE = path.join(__dirname, '../.env');
 require('dotenv').config({ path: ENV_FILE });
 
 (async () => {
+  await mongoDB.init();
+
   const app = express();
   const port = 3000;
 
